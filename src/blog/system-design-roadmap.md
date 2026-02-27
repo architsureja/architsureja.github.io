@@ -1,6 +1,6 @@
 ---
 title: The Ultimate System Design Roadmap & Cheat Sheet
-date: Oct 30, 2023
+date: Jan 30, 2026
 readTime: 25 min read
 excerpt: An exhaustive, roadmap-style guide to System Design interviews. From DNS and Load Balancers to DB Sharding, Streaming, and Fault Tolerance. Use this as your definitive cheat sheet.
 tags: System Design, Interview, Architecture, Roadmap, Cheat Sheet
@@ -8,7 +8,7 @@ tags: System Design, Interview, Architecture, Roadmap, Cheat Sheet
 
 ## 🚀 The Ultimate System Design Interview Cheat Sheet
 
-A comprehensive roadmap and cheat sheet to tackle System Design interviews. This guide is designed to simulate the depth required to architect large-scale, distributed systems, drawing inspiration from comprehensive resources like `roadmap.sh`.
+A comprehensive roadmap and cheat sheet to tackle System Design interviews. This guide is designed to simulate the depth required to architect large-scale, distributed systems.
 
 ---
 
@@ -80,12 +80,14 @@ Before designing a system, you must understand how users reach it.
 ### Relational (SQL) - PostgreSQL, MySQL
 *   **Best For:** Structured data, strict relationships, transactions needing ACID compliance (Atomicity, Consistency, Isolation, Durability).
 *   **Pros:** Data integrity, complex JOIN queries.
-*   **Cons:** Hard to scale horizontally (Scale-out); usually requires vertical scaling (Scale-up) or complex Sharding.
+*   **Cons:** Hard to scale horizontally (Scale-out); usually requires vertical scaling (Scale-up) or complex Sharding. 
+*   **Advanced Scaling Options:** Mentioning NewSQL solutions like **Google Cloud Spanner** (True Distributed SQL) or **Vitess** (MySQL middleware) shows deep understanding of modern scaling solutions.
 
 ### NoSQL Data Stores
 *   **Key-Value (Redis, DynamoDB, Memcached)**
     *   **Best For:** Caching, session management, user preferences, shopping carts.
     *   **Pros:** Blazing fast O(1) lookups, simple horizontal scaling.
+    *   **Advanced Concepts:** **Redis Cluster** (understanding Hash Slots and `MOVED` redirects), **Redlock Algorithm** (for distributed locking across multiple instances).
 *   **Document (MongoDB, CouchDB)**
     *   **Best For:** Semi-structured data, evolving schemas, catalogs, CMS.
     *   **Pros:** Flexible schema (JSON/BSON), easy object mapping. Data belonging together is stored together.
@@ -93,6 +95,9 @@ Before designing a system, you must understand how users reach it.
     *   **Best For:** Massive write-heavy workloads, time-series data, huge datasets needing high availability.
     *   **Pros:** Extremely fast and scalable writes, decentralized architecture (no single point of failure).
     *   **Cons:** Complex data modeling (you must model around your queries, not your relationships).
+*   **Search Engine (Elasticsearch, Solr)**
+    *   **Best For:** Full-text search, logging, analytics.
+    *   **Core Concept:** The **Inverted Index** (mapping words to document IDs). Standard architectures separate the Offline Indexing Flow from the Real-time Query Flow.
 *   **Graph (Neo4j)**
     *   **Best For:** Highly connected data, recommendation engines, social networks, fraud detection.
     *   **Pros:** Traversing relationships is extremely fast compared to SQL JOINs.
@@ -118,10 +123,11 @@ Before designing a system, you must understand how users reach it.
 
 *   **Message Queues (RabbitMQ, Amazon SQS)**
     *   **Concept:** Point-to-point. A message is produced, put in a queue, and consumed by exactly *one* worker, then deleted.
-    *   **Use when:** Task offloading (background video encoding, sending emails), decoupling services to handle traffic spikes.
+    *   **Use when:** Task offloading (background video encoding, sending emails), decoupling services to handle traffic spikes. Standard cloud choice: SQS.
 *   **Event Streams (Apache Kafka, Amazon Kinesis)**
     *   **Concept:** Publish/Subscribe log. Events are appended to an immutable log. Multiple independent consumer groups can read the same event at their own pace.
-    *   **Use when:** Real-time analytics, event sourcing architectures, when an action (e.g., "User Registered") needs to trigger multiple different downstream systems (Email system, Analytics system, Billing system).
+    *   **Use when:** Real-time analytics, event sourcing architectures, when an action needs to trigger multiple downstream systems. 
+    *   **Advanced Kafka Concepts:** Understand **In-Sync Replicas (ISR)**, Consumer Lag monitoring, and "At-Least-Once" vs "Exactly-Once" delivery semantics.
 
 ---
 
@@ -142,7 +148,8 @@ Caching sits between your application and the database to drastically reduce lat
 
 *   **Redundancy / No SPOF:** Every component must have a backup (multi-AZ deployments).
 *   **Circuit Breaker:** If a downstream service fails repeatedly, trip the circuit to stop sending requests. Give the failing service time to recover, and fallback gracefully for the user.
-*   **Rate Limiting:** Protect APIs from abuse (DDoS) or noisy neighbors. Algorithms: Token Bucket, Leaking Bucket, Fixed Window, Sliding Window Log.
+*   **Rate Limiting:** Protect APIs from abuse (DDoS) or noisy neighbors. Algorithms: Token Bucket (supports bursts), Leaking Bucket, Fixed Window, Sliding Window Log. 
+    *   *Implementation detail:* Often uses **Lua scripts in Redis** to guarantee atomic operations in a distributed environment.
 *   **Idempotency:** Designing operations so they can be retried safely without negative side effects (e.g., charging a payment multiple times due to a network timeout). Use idempotency keys.
 *   **Graceful Degradation:** If Netflix's personalized recommendation engine goes down, you should still be able to watch a video or browse popular titles.
 
@@ -177,7 +184,7 @@ To truly master system design, studying real-world architectural blueprints is e
 
 ### 1. Scalable Chat Infrastructure (500M+ DAU)
 ![Chat Service](/system-design/Chat%20Service.jpg)
-**Key Takeaways:** Uses a WebSocket Gateway for persistent bi-directional connections. A Redis/ZooKeeper session map links users to their specific active gateway. A Cassandra NoSQL database handles the massive write throughput of individual messages, while Kafka asynchronously processes push notifications. 
+**Key Takeaways:** Uses a WebSocket Gateway for persistent connections (online users) and Push Notifications (FCM/APNs) for offline users. To connect users across different gateways, it uses the "Megaphone" pattern via **Redis Pub/Sub**. For history fetching, it strictly utilizes **Cursor-based Pagination** (`last_msg_id`) to avoid skips/duplicates. A Wide-Column store like Cassandra handles the massive write throughput asynchronously.
 
 ### 2. Dasher Dispatch & Matching System (Food Delivery)
 ![Dasher Dispatch](/system-design/Dasher%20Dispatch%20&%20Matching%20System.jpg)
@@ -189,7 +196,7 @@ To truly master system design, studying real-world architectural blueprints is e
 
 ### 4. YouTube Video Platform
 ![YouTube Clone](/system-design/Youtube.jpg)
-**Key Takeaways:** Split into distinct read and write paths. Uploads go directly to an S3 raw bucket via pre-signed URLs to avoid bottlenecking API servers. Video transcoding is handled asynchronously by workers. Crucially, the read path leverages Global CDNs to serve edge-cached chunks, meaning 99% of read traffic never hits the origin database.
+**Key Takeaways:** Split into distinct read and write paths. Uploads utilize **Pre-Signed URLs** linking directly to an S3 raw bucket to bypass backend bottlenecks. It also leverages **Resumable Uploads** (chunking) to handle mobile network drops gracefully. Video transcoding is then handled asynchronously by workers. Crucially, the read path leverages Global CDNs to serve edge-cached chunks.
 
 ### 5. News Feed System
 ![Feed System](/system-design/feed%20system.jpg)
@@ -209,11 +216,11 @@ To truly master system design, studying real-world architectural blueprints is e
 
 ### 9. E-Commerce Order System
 ![Order System](/system-design/order_system.jpg)
-**Key Takeaways:** Focused on transaction integrity. Inventory decrements and payment authorizations must act as a single atomic transaction or utilize the Saga Pattern across microservices to prevent overselling.
+**Key Takeaways:** Focused on transaction integrity. Inventory decrements and payment authorizations must act as a single atomic transaction or utilize the Saga Pattern across microservices to prevent overselling. Handles the "Double Spend" problem via **Optimistic Locking** (versioning).
 
-### 10. Payment Gateway System
+### 10. Payment Gateway & Financial Systems (e.g., Robinhood)
 ![Payment System](/system-design/payment_system.jpg)
-**Key Takeaways:** Emphasizes exact-once processing. Idempotency keys are mandatory to prevent double-charging during network timeouts. Relies heavily on ACID compliant relational databases and extensive audit logging for compliance and reconciliation.
+**Key Takeaways:** Emphasizes exact-once processing and financial integrity using **Double-Entry Bookkeeping** (Ledgers). **Idempotency keys** are absolutely mandatory to prevent double-charging during network timeouts. Relies heavily on ACID-compliant relational databases and extensive audit logging for reconciliation.
 
 ### 11. Distributed Rate Limiter
 ![Rate Limiter](/system-design/rate%20limittor.jpg)
@@ -233,7 +240,7 @@ To truly master system design, studying real-world architectural blueprints is e
 
 ### 15. ZooKeeper / Consensus Algorithm
 ![ZooKeeper](/system-design/zookeeper.jpg)
-**Key Takeaways:** The backbone of distributed coordination. Used for service discovery, distributed locking, and configuration management. Relies on consensus algorithms (like ZAB or Paxos) to ensure that a cluster of nodes agrees on the current state and handles leader elections when nodes fail.
+**Key Takeaways:** The backbone of distributed coordination. Uses **Ephemeral Znodes** natively as a Service Discovery mechanism (if a server crashes, the connection drops, and the ephemeral node disappears to alert others). Relies on consensus algorithms (like ZAB or Paxos) to ensure that a cluster of nodes agrees on the current state and handles leader elections when nodes fail.
 
 ### 16. Serverless App / Job Scheduler (Alternate)
 ![Opal App](/system-design/Untitled%20Opal%20app-saved.jpg)
