@@ -31,155 +31,261 @@ import {
 // --- PORTFOLIO DATA CONTEXT FOR GEMINI ---
 const PORTFOLIO_CONTEXT = `
 NAME: Archit Sureja
-ROLE: Software Engineer
+ROLE: SOFTWARE ENGINEER - II
 EXPERIENCE: 10+ years
 LOCATION: Toronto, Canada (Open to relocation)
-CONTACT: lacsureja@gmail.com, +1 647-867-0109, linkedin.com/in/architsureja, architsureja.github.io
+CONTACT: acsureja@gmail.com, +1 647-867-0109, linkedin.com/in/architsureja, architsureja.github.io
 
 SUMMARY:
-Software Engineer specializing in Backend, FrontEnd, Mobile, Cloud Security, and Infrastructure using AWS, Java, Node.js, React, Android, and Next.js. Expertise in modernizing critical authentication frameworks, delivering Passkey integration, Regionalization support, and IPv6 integration. Currently at Amazon (AWS).
+Senior Full-Stack Software Engineer with over 10+ years of experience specializing in high-scale distributed systems, Cloud Security, and Identity & Access Management (IAM). Proven track record at Amazon (AWS) leading the modernization of critical authentication frameworks, including the end-to-end delivery of Passkey MFA and IPv6 infrastructure. Expert in architecting secure, multi-region cloud solutions using Java, AWS CDK, and React/Next.js to drive operational excellence and business value.
 
 SKILLS:
-- Languages: Java, Kotlin, Node.js, TypeScript, Python, Swift, SQL
-- Web: React.js, Next.js, Spring Boot, React Native, Redux
-- Infrastructure: AWS, AWS CDK, Jenkins, Docker, Git
-- Testing: Cypress.io, Vitest, K6, Mockito, Mockk, SonarQube
-- Mobile: Android, Jetpack Compose, Coroutines, Dagger/Hilt, Room DB
+- Languages: Java, Kotlin, TypeScript, Swift, SQL
+- Cloud & Infrastructure: AWS (CDK, API Gateway, IAM, GovCloud), CI/CD (Jenkins, Sonar), Multi-region CDN Deployment, IPv6 Integration
+- Backend: Spring, Node.js, MVC
+- Mobile: Android SDK, Jetpack Compose, Live data, Jetpack Navigation, Coroutines, MVVM/MVP, React Native, Redux, iOS (Xcode), Mobile SDK Development
+- Frontend: React, Next.js, CloudScape, HTML5/CSS3
+- Testing & Quality: Cypress.io, Vitest, K6, Mockito, Mockk, TDD, E2E Canary Testing, Integration Test, Unit Test
+- Architecture & Tools: Backbase, REST, Microservices, HLD/LLD, Git, Agile/Scrum, Room Database, SQLite.
 
 WORK EXPERIENCE:
-1. Amazon (AWS) | Software Engineer | Toronto | Oct 2021-Present
-   - Full Stack Dev & Infrastructure Architecture.
-   - Led Passkey for MFA implementation.
-   - Architected full IPv6 support for AWS Sign-In.
-   - Managed 100+ Canaries and integration tests.
-   - Tech: Java, Spring Boot, AWS CDK, React, Next.js.
+1. AMAZON (AWS) | SOFTWARE DEV. ENGINEER - II | Toronto, ON | Oct 2021 - Cont.
+   - Area of Focus: Identity & Access Management (IAM), Security, and Global Infrastructure.
+   - Backend & API Engineering:
+     - Engineered scalable backend services using Java and Spring Boot, focusing on end-to-end SDLC.
+     - Designed and implemented secure, high-traffic REST APIs for MFA and identity workflows.
+     - Authored comprehensive HLD/LLD for microservices migration.
+     - Architected secure cloud infrastructure using AWS CDK.
+   - Security & Core Infrastructure:
+     - Implemented full Dual-stack support for AWS Sign-In domain.
+     - Spearheaded backend integration for Passkey as an MFA method.
+     - Delivered critical Root account functionality within EUSC partition.
+     - Led high-severity incident resolutions and security hardening initiatives.
+   - Full-Stack, Mobile & Testing:
+     - Developed Android and iOS SDKs for AWS Sign-In service.
+     - Optimized frontend experiences using React, Next.js, and Node.js.
+     - Designed comprehensive testing frameworks using Cypress.io, Vitest, K6.
+   - Mentorship & Leadership:
+     - Spearheaded strategic projects, mentored interns/engineers.
+     - Hackathon Lead: Designed POC authentication system utilizing Zero-Knowledge Proofs (ZKP).
 
-2. Infotree Technology | Software Engineer | Pointe-Claire | Sep 2021-Oct 2021
-   - SDK development for map utils (Google Maps, MapBox).
+2. INFOTREE TECHNOLOGY (EXPEDIA) | SOFTWARE ENGINEER (CONTRACT) | Pointe-Claire, QC | Sep 2021 – Oct 2021
+   - Area of Focus: Geospatial Mobile SDK Development.
+   - SDK development for map utils using Google map and MapBox libraries.
+   - Writing of Unit, Instrumental, and automation UI test cases.
 
-3. Mobiquity Inc. | Senior Engineer | Ahmedabad | Oct 2017-Jun 2021
-   - Banking frameworks integration, lead team of 3-6.
-   - Tech: Android, React-native, Kotlin, Jenkins.
+3. MOBIQUITY INC. | SENIOR ENGINEER | Ahmedabad, India | Oct 2017 – Jun 2021
+   - Area of Focus: Digital Banking & Mobile Frameworks.
+   - Architecture & Mobile Development:
+     - Designed complex technical architecture proposals for Backbase Framework integration.
+     - Programmed robust mobile applications using Android, React Native, and Kotlin.
+   - Leadership & Mentorship:
+     - Supervised a team of 3–6 engineers.
+     - Managed project deliverable milestones.
+   - Operational Excellence:
+     - Improved software quality by implementing integration tests (75%+ code coverage).
+     - Configured and optimized Sonar and Jenkins CI/CD pipelines.
 
-4. e-Procurement Technologies | Sr Android Dev | Jan 2017-Oct 2017
-5. Techreco Solution | Sr Android Dev | Mar 2016-Jan 2017
-6. Percept InfoTech | Android Dev | Mar 2014-Mar 2016
-7. Institute for Plasma Research | Project Engineer | Jun 2012-Mar 2014
+4. e-Procurement Technologies | SR. ANDROID DEV. | Ahmedabad | Jan 2017 - Oct 2017
+   - Developed enterprise mobile applications using Kotlin, Android SDK, and SQLite.
+   - Integrated advanced features like Beacons and NFC.
+
+5. Techreco Solution | SR. ANDROID DEV. | Ahmedabad | Mar 2016 - Jan 2017
+   - Programmed mobile applications utilizing Java and the Android framework.
+
+6. Percept InfoTech | ANDROID DEV. | Ahmedabad | Mar 2014 - Mar 2016
+   - Developed mobile applications and interactive experiences using Android, Unity3D.
+
+7. Institute for Plasma Research | PROJECT ENGINEER | Gandhinagar | Jun 2012 - Mar 2014
+   - Engineered controlling system for prototype robot using ROS, Arduino, Raspberry Pi, Xbee.
 
 EDUCATION:
-- M.Tech (ICT), Nirma University (2013)
-- B.E. (IT), Gujarat University (2011)
+- MASTER OF TECHNOLOGY (ICT), NIRMA UNIVERSITY, Ahmedabad, 2013
+- BACHELOR OF ENGINEERING (IT), GUJARAT UNIVERSITY, Ahmedabad, 2011
+- DIPLOMA (IT), TECHNICAL EXAM. BOARD, Gandhinagar, 2008
+
+AWARDS:
+- Associate Android Developer
 - AWS Certified Developer - Associate
 `;
 
 // --- EXPERIENCE DATA (UPDATED WITH ALL CV DETAILS) ---
 const EXPERIENCES = [
   {
-    role: "Software Engineer",
-    company: "Amazon (AWS)",
-    location: "Toronto, CA",
-    period: "Oct 2021 - Present",
-    description: "Managing complete software development lifecycle for critical AWS Identity services. Focused on high-scale architecture, security hardening, and modernizing authentication flows.",
+    role: "SOFTWARE DEV. ENGINEER - II",
+    company: "AMAZON (AWS)",
+    location: "Toronto, ON",
+    period: "Oct 2021 - Cont.",
+    description: "Area of Focus: Identity & Access Management (IAM), Security, and Global Infrastructure.",
+    grid: "center",
     highlights: [
-      "Manage the complete software development life cycle: technical design, coding, testing, deployment, and maintenance.",
-      "Architect and implement secure cloud infrastructure using Java, Spring Boot, and AWS CDK (Regionalization, GovCloud, CDN).",
-      "Lead high-severity incident resolution and drive security hardening initiatives (HTTP slowloris, hardware token diagnostics, etc).",
-      "Design and maintain comprehensive testing frameworks (Cypress.io, Vitest, K6, Mockito, Mockk) covering Root, IAM, and MFA workflows.",
-      "Mentor interns and engineers on backend integration, security best practices, and operational excellence.",
-      "Collaborate with stakeholders to assess UX, provide feedback, and represent engineering considerations.",
-      "Lead strategic, cross-functional team projects involving multiple stakeholders.",
-      "IPv6 Infrastructure & Security: Architected and implemented full IPv6 support for AWS Sign-In domain.",
-      "Passkey for MFA: Led end-to-end implementation, resolving dual RPID challenges and enabling Windows 10 cross-platform support.",
-      "Root Enablement (EUSC partition): Implemented Root account functionality (Login, Password Reset, Account update).",
-      "Signup Architecture Redesign: Authored HLD/LLD for migrating Signup service behind Console architecture.",
-      "Authentication Resiliency: Enabling Root authentication at other regions for failure resilience.",
-      "New UI/UX Implementation: Migrated AWS Sign-In Service to modern stack using CloudScape, React, and NextJS.",
-      "Mobile SDK Development: Developed Android and iOS SDKs for AWS Sign-In service."
+      {
+        title: "Backend & API Engineering",
+        items: [
+          "Engineered scalable backend services using Java and Spring Boot, focusing on the end-to-end software development life cycle from technical design to deployment for traditional (Password) and Federated (SAML 2.0, OIDC) authentication flows.",
+          "Designed and implemented secure, high-traffic REST APIs for MFA and identity workflows, enhancing API performance and diagnostic capabilities, utilizing industry-standard encryption for secure password transportation.",
+          "Authored comprehensive High-Level and Low-Level Designs (HLD/LLD) for the migration of the Signup service and a major Sign-in Monolith into a microservices architecture, reducing deployment latency and technical debt.",
+          "Developed and maintained robust backend components while managing Git, CI/CD pipelines, and automated service Canaries to ensure 99.99% availability.",
+          "Architected secure cloud infrastructure using AWS CDK, specifically handling API Gateway integrations and multi-region service deployments."
+        ]
+      },
+      {
+        title: "Security & Core Infrastructure",
+        items: [
+          "Implemented full Dual-stack support for the AWS Sign-In domain, including complex threat modeling and infrastructure-as-code deployments for Classic and 100% compliance with GovCloud security mandates.",
+          "Spearheaded the backend integration for Passkey as an MFA method, resolving dual RPID challenges and enabling cross-platform authentication.",
+          "Delivered critical Root account functionality (Login, Password Reset, Account Update) within the EUSC partition, ensuring resiliency against regional failures.",
+          "Led high-severity incident resolutions and drove security hardening initiatives, such as protecting non-public paths and implementing HTTP Slowloris protection."
+        ]
+      },
+      {
+        title: "Full-Stack, Mobile & Testing",
+        items: [
+          "Managed the complete software development life cycle, encompassing technical design, coding, testing, deployment, and maintenance.",
+          "Developed Android and iOS SDKs for the AWS Sign-In service to provide secure, authenticated in-app browsing experiences.",
+          "Optimized frontend experiences across Desktop and Mobile by migrating the Sign-In service to a modern stack of React, Next.js, and Node.js.",
+          "Designed comprehensive testing frameworks using Cypress.io, Vitest, K6, and Mockito/Mockk, maintaining over integration tests and 100+ canaries for Signin workflows."
+        ]
+      },
+      {
+        title: "Mentorship, Leadership & Operational Excellence",
+        items: [
+          "Spearheaded strategic, cross-functional projects by collaborating with 8+ product and UX teams to deliver critical security features reaching millions of global users.",
+          "Mentored 1 intern and 3 junior engineers on backend integration, security best practices, and achieving operational excellence.",
+          "Drove team growth by actively participating in the technical recruitment and interviewing processes for engineering candidates.",
+          "Led strategic, cross-functional team projects, collaborating with product stakeholders and UX teams to represent engineering considerations and meet milestones.",
+          "Provided ongoing operational support to the team and identified opportunities to enhance system reliability and efficiency."
+        ]
+      },
+      {
+        title: "Hackathon Lead: ZKP-Based Authentication Framework",
+        items: [
+          "Designed a POC authentication system utilizing Zero-Knowledge Proofs (ZKP) to allow users to authenticate without revealing underlying sensitive data."
+        ]
+      }
     ],
-    tech: ['Java', 'Spring Boot', 'AWS CDK', 'React', 'Next.js', 'TypeScript', 'Cypress.io', 'Vitest']
+    tech: ['Java', 'Spring Boot', 'AWS CDK', 'React', 'Next.js', 'TypeScript', 'Cypress.io', 'Vitest', 'K6', 'Mockito']
   },
   {
-    role: "Software Engineer",
-    company: "Infotree Technology",
-    location: "Pointe-Claire, CA",
-    period: "Sep 2021 - Oct 2021",
-    description: "Specialized in SDK development focusing on geospatial technologies.",
-    highlights: [
-       "SDK development for map utils and features with use of Google map and MapBox libraries.",
-       "Writing of Unit test cases, Instrumental test cases and automation UI test cases for robustness, security, usability.",
-       "Consistently delivered and implemented quality units with functional features and minimal defects.",
-       "Met product specifications and achieved goals for maintaining quality."
-    ],
-    tech: ['Android', 'SDK Dev', 'Google Maps API', 'MapBox']
-  },
-  {
-    role: "Senior Engineer",
-    company: "Mobiquity Inc.",
-    location: "Ahmedabad, IN",
+    role: "SENIOR ENGINEER",
+    company: "MOBIQUITY INC.",
+    location: "Ahmedabad, India",
     period: "Oct 2017 - Jun 2021",
-    description: "Led mobile and integration projects for banking frameworks.",
+    description: "Area of Focus: Digital Banking & Mobile Frameworks.",
+    grid: "left",
     highlights: [
-      "Designed technical architecture proposals to enhance and integrate Backbase Framework systems and third-party libraries.",
-      "Met all project deliverable milestones by ensuring immediate resolutions of issues.",
-      "Supervised 3-6 team members to resolve obstacles following best practices strategies.",
-      "Programmed mobile applications using Android, React-native, and Kotlin to enable code abstraction and reuse.",
-      "Configured Sonar and Jenkins pipeline to support and enhance code quality and fast build delivery.",
-      "Improved software quality and reliability by implementing integration tests (with 75%+ code coverage).",
-      "Consistently delivered and implemented quality units with functional features and minimal defects.",
-      "Met product specifications and achieved goals for maintaining quality while learning Cloud Services and ML."
+      {
+        title: "Architecture & Mobile Development",
+        items: [
+          "Designed complex technical architecture proposals to seamlessly integrate the Backbase Framework with various third-party libraries.",
+          "Programmed robust mobile applications using Android, React Native, and Kotlin, utilizing object-oriented principles to enable code abstraction and high stability.",
+          "Improved software quality and system reliability by implementing comprehensive integration tests, achieving 75%+ code coverage.",
+          "Delivered high-quality functional units with minimal defects, consistently meeting strict product specifications and stakeholder milestones."
+        ]
+      },
+      {
+        title: "Leadership & Mentorship",
+        items: [
+          "Supervised a team of 3–6 engineers, providing technical guidance and resolving project obstacles through the application of company best practices.",
+          "Managed project deliverable milestones for diverse stakeholders by ensuring immediate resolution of critical issues as they arose.",
+          "Mentored team members on modern development standards and the adoption of emerging cloud services and ML trends."
+        ]
+      },
+      {
+        title: "Operational Excellence",
+        items: [
+          "Improved software quality and reliability by implementing integration tests (with 75%+ code coverage) for robustness, security, usability.",
+          "Configured and optimized Sonar and Jenkins CI/CD pipelines to enhance code quality and accelerate build delivery speeds.",
+          "Orchestrated development workflows within Scrum and Agile environments to maintain project velocity and transparency."
+        ]
+      }
     ],
-    tech: ['Android', 'React Native', 'Kotlin', 'Jenkins', 'Backbase', 'Sonar']
+    tech: ['Android', 'React Native', 'Kotlin', 'Jenkins', 'Backbase', 'Sonar', 'Agile/Scrum']
   },
   {
-    role: "Senior Android Developer",
-    company: "e-Procurement Technologies",
-    location: "Ahmedabad, IN",
-    period: "Jan 2017 - Oct 2017",
-    description: "Focused on specialized mobile applications and library modules.",
+    role: "SOFTWARE ENGINEER (CONTRACT)",
+    company: "INFOTREE TECHNOLOGY (EXPEDIA)",
+    location: "Pointe-Claire, QC",
+    period: "Sep 2021 - Oct 2021",
+    description: "Area of Focus: Geospatial Mobile SDK Development.",
+    grid: "right",
     highlights: [
-       "Met all project deliverable milestones by ensuring immediate resolutions of issues.",
-       "Programmed mobile applications using Android, Kotlin, SQLite, Beacon, NFS.",
-       "Designed and implemented library modules to integrate with any system.",
-       "Designed and implemented proof-of-concept application.",
-       "Consistently delivered and implemented quality units with functional features and minimal defects.",
-       "Collaborated with QA testers to conduct end-to-end unit testing and post-production testing."
+      {
+        items: [
+          "SDK development for map utils and features with use of Google map and MapBox libraries.",
+          "Writing of Unit test cases, Instrumental test cases and automation UI test cases for robustness, security, usability.",
+          "Consistently delivered and implemented quality units with functional features and minimal defects.",
+          "Met product specifications and achieved goals for maintaining quality."
+        ]
+      }
     ],
-    tech: ['Android', 'Kotlin', 'SQLite', 'Beacon', 'NFS']
+    tech: ['Android', 'SDK Dev', 'Google Maps', 'MapBox']
   },
   {
-    role: "Senior Android Developer",
+    role: "SR. ANDROID DEV.",
     company: "Techreco Solution",
-    location: "Ahmedabad, IN",
+    location: "Ahmedabad, India",
     period: "Mar 2016 - Jan 2017",
-    description: "Delivered robust mobile solutions and POCs.",
+    description: "Mobile application development.",
+    grid: "right",
     highlights: [
-      "Programmed mobile applications using Android, JAVA.",
-      "Designed and implemented proof-of-concept application and library module.",
-      "Consistently delivered and implemented quality units with functional features and minimal defects.",
-      "Collaborated with QA testers to conduct end-to-end unit testing and post-production testing."
+      {
+        items: [
+          "Programmed mobile applications utilizing Java and the Android framework, delivering custom UI functional features with minimal defects.",
+          "Created library modules and proof-of-concept apps to validate technical feasibility for new product requirements."
+        ]
+      }
     ],
-    tech: ['Android', 'Java', 'Mobile App Dev']
+    tech: ['Android', 'Java']
   },
   {
-    role: "Android Developer",
-    company: "Percept InfoTech",
-    location: "Ahmedabad, IN",
-    period: "Mar 2014 - Mar 2016",
-    description: "Early career focus on mobile and interactive applications.",
+    role: "SR. ANDROID DEV.",
+    company: "e-Procurement Technologies",
+    location: "Ahmedabad, India",
+    period: "Jan 2017 - Oct 2017",
+    description: "Developed enterprise mobile applications.",
+    grid: "right",
     highlights: [
-      "Programmed mobile applications using Android, JAVA, Unity3D.",
-      "Consistently delivered and implemented quality units with functional features and minimal defects."
+      {
+        items: [
+          "Developed enterprise mobile applications using Kotlin, Android SDK, and SQLite, integrating advanced features like Beacons and NFC.",
+          "Designed reusable library modules and proof-of-concept applications to streamline integration with external systems.",
+          "Collaborated with QA teams to execute end-to-end unit and post-production testing, ensuring high-quality, defect-free releases."
+        ]
+      }
+    ],
+    tech: ['Android SDK', 'Kotlin', 'SQLite', 'Beacons', 'NFC']
+  },
+  {
+    role: "ANDROID DEV.",
+    company: "Percept InfoTech",
+    location: "Ahmedabad, India",
+    period: "Mar 2014 - Mar 2016",
+    description: "Mobile application and interactive experience development.",
+    grid: "left",
+    highlights: [
+      {
+        items: [
+          "Programmed mobile applications using Android, JAVA, Unity3D.",
+          "Ensured robust software delivery by maintaining a focus on functional quality and consistent unit performance."
+        ]
+      }
     ],
     tech: ['Android', 'Java', 'Unity3D']
   },
   {
-    role: "Project Engineer",
+    role: "PROJECT ENGINEER",
     company: "Institute for Plasma Research",
-    location: "Gandhinagar, IN",
+    location: "Gandhinagar, India",
     period: "Jun 2012 - Mar 2014",
-    description: "Robotics and hardware control systems.",
-    highlights: ["Programmed controlling system for prototype robot using ROS (Robotic Operation System), Arduino, Raspberry Pi, Xbee Technology."],
-    tech: ['ROS', 'Arduino', 'Raspberry Pi', 'C++']
+    description: "Robotics and control systems.",
+    grid: "right",
+    highlights: [
+      {
+        items: ["Programmed controlling system for prototype robot using ROS (Robotic Operation System), Arduino, Raspberry Pi, Xbee Technology."]
+      }
+    ],
+    tech: ['ROS', 'Arduino', 'Raspberry Pi', 'Xbee']
   }
 ];
 
@@ -546,14 +652,25 @@ const Portfolio = () => {
             </p>
 
             {data.highlights && (
-              <ul className="space-y-1 mb-3">
-                {data.highlights.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm text-slate-400">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
-                    <span>{item}</span>
-                  </li>
+              <div className="space-y-4 mb-3">
+                {data.highlights.map((section, sIdx) => (
+                  <div key={sIdx}>
+                    {section.title && (
+                      <h4 className="text-sm font-bold text-blue-400 mb-2 uppercase tracking-wider">
+                        {section.title}
+                      </h4>
+                    )}
+                    <ul className="space-y-1">
+                      {section.items.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-slate-400">
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             )}
 
             <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-slate-700/50">
@@ -606,7 +723,7 @@ const Portfolio = () => {
               <NavLink id="experience" label="Experience" />
               <NavLink id="education" label="Education" />
               <a 
-                href="mailto:lacsureja@gmail.com" 
+                href="mailto:acsureja@gmail.com" 
                 className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors shadow-lg shadow-blue-600/20"
               >
                 Hire Me
@@ -634,7 +751,7 @@ const Portfolio = () => {
               <MobileNavLink id="education" label="Education" />
               <div className="p-4">
                 <a 
-                  href="mailto:lacsureja@gmail.com"
+                  href="mailto:acsureja@gmail.com"
                   className="block w-full text-center py-3 text-sm font-bold text-white bg-blue-600 rounded-lg"
                 >
                   Contact Me
@@ -672,7 +789,7 @@ const Portfolio = () => {
 
             <div className="flex flex-wrap items-center gap-4">
               <a 
-                href="mailto:lacsureja@gmail.com"
+                href="mailto:acsureja@gmail.com"
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all shadow-lg shadow-blue-600/25 flex items-center gap-2"
               >
                 <Mail size={18} />
@@ -711,17 +828,13 @@ const Portfolio = () => {
               <h2 className="text-3xl font-bold text-white mb-6">About Me</h2>
               <div className="space-y-4 text-slate-400 leading-relaxed">
                 <p>
-                  I am a seasoned Software Engineer based in Toronto, currently driving innovation at AWS. 
-                  My expertise spans the entire development lifecycle, from architecting secure cloud infrastructure 
-                  to optimizing frontend experiences.
+                  Senior Full-Stack Software Engineer with over 10+ years of experience specializing in high-scale distributed systems, Cloud Security, and Identity & Access Management (IAM).
                 </p>
                 <p>
-                  I specialize in modernizing critical systems, having delivered high-impact solutions like 
-                  Passkey integration, Regionalization support, and IPv6 integration for AWS Sign-In.
+                  Proven track record at Amazon (AWS) leading the modernization of critical authentication frameworks, including the end-to-end delivery of Passkey MFA and IPv6 infrastructure.
                 </p>
                 <p>
-                  I am committed to engineering excellence, focusing on security hardening, operational resilience, 
-                  and cost efficiency while mentoring the next generation of engineers.
+                  Expert in architecting secure, multi-region cloud solutions using Java, AWS CDK, and React/Next.js to drive operational excellence and business value.
                 </p>
               </div>
             </div>
@@ -764,44 +877,68 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                <Cpu size={20} className="text-blue-400" /> Languages & Core
+                <Cpu size={20} className="text-blue-400" /> Languages
               </h3>
               <div className="flex flex-wrap gap-2">
-                <SkillBadge name="Java / Kotlin" icon={Code} />
-                <SkillBadge name="Node.js / TS" icon={Terminal} />
-                <SkillBadge name="Python" icon={Code} />
+                <SkillBadge name="Java" icon={Code} />
+                <SkillBadge name="Kotlin" icon={Code} />
+                <SkillBadge name="TypeScript" icon={Terminal} />
                 <SkillBadge name="Swift" icon={Code} />
-                <SkillBadge name="SQL / NoSQL" icon={Database} />
+                <SkillBadge name="SQL" icon={Database} />
               </div>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                <Globe size={20} className="text-blue-400" /> Web & Frameworks
+                <Shield size={20} className="text-blue-400" /> Cloud & Infrastructure
               </h3>
               <div className="flex flex-wrap gap-2">
-                <SkillBadge name="React.js" icon={Code} />
-                <SkillBadge name="Next.js" icon={Code} />
+                <SkillBadge name="AWS (CDK, IAM)" icon={Server} />
+                <SkillBadge name="CI/CD (Jenkins)" icon={Terminal} />
+                <SkillBadge name="GovCloud" icon={Shield} />
+                <SkillBadge name="IPv6 Integration" icon={Globe} />
+                <SkillBadge name="Multi-region CDN" icon={Server} />
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <Server size={20} className="text-blue-400" /> Backend Development
+              </h3>
+              <div className="flex flex-wrap gap-2">
                 <SkillBadge name="Spring Boot" icon={Server} />
-                <SkillBadge name="React Native" icon={Smartphone} />
-                <SkillBadge name="Redux" icon={Code} />
+                <SkillBadge name="Node.js" icon={Terminal} />
+                <SkillBadge name="MVC" icon={Code} />
+                <SkillBadge name="REST APIs" icon={Globe} />
               </div>
             </div>
 
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                <Shield size={20} className="text-blue-400" /> Infrastructure & DevOps
+                <Smartphone size={20} className="text-blue-400" /> Mobile Development
               </h3>
               <div className="flex flex-wrap gap-2">
-                <SkillBadge name="AWS" icon={Server} />
-                <SkillBadge name="AWS CDK" icon={Code} />
-                <SkillBadge name="Jenkins" icon={Terminal} />
-                <SkillBadge name="Docker" icon={Server} />
-                <SkillBadge name="Git" icon={Code} />
+                <SkillBadge name="Android SDK" />
+                <SkillBadge name="Jetpack Compose" />
+                <SkillBadge name="React Native" />
+                <SkillBadge name="iOS (Xcode)" />
+                <SkillBadge name="Mobile SDKs" />
               </div>
             </div>
 
             <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <Code size={20} className="text-blue-400" /> Frontend
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <SkillBadge name="React" icon={Code} />
+                <SkillBadge name="Next.js" icon={Code} />
+                <SkillBadge name="CloudScape" icon={Globe} />
+                <SkillBadge name="HTML5/CSS3" icon={Code} />
+              </div>
+            </div>
+            
+             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                 <Award size={20} className="text-blue-400" /> Testing & Quality
               </h3>
@@ -810,33 +947,7 @@ const Portfolio = () => {
                 <SkillBadge name="Vitest" />
                 <SkillBadge name="K6" />
                 <SkillBadge name="Mockito / Mockk" />
-                <SkillBadge name="SonarQube" />
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                <Smartphone size={20} className="text-blue-400" /> Android / Mobile
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <SkillBadge name="Jetpack Compose" />
-                <SkillBadge name="Coroutines" />
-                <SkillBadge name="Dagger / Hilt" />
-                <SkillBadge name="Retrofit" />
-                <SkillBadge name="Room DB" />
-              </div>
-            </div>
-            
-             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
-                <BookOpen size={20} className="text-blue-400" /> Concepts
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <SkillBadge name="System Design" />
-                <SkillBadge name="Microservices" />
                 <SkillBadge name="TDD" />
-                <SkillBadge name="Agile / Scrum" />
-                <SkillBadge name="Cloud Security" />
               </div>
             </div>
           </div>
@@ -852,36 +963,66 @@ const Portfolio = () => {
              {/* Central Line for Desktop Grid */}
              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-800 -translate-x-1/2"></div>
              
-             {/* 1. Amazon (Current) - Full Width Featured */}
-             <ExperienceCard data={EXPERIENCES[0]} isFullWidth={true} />
-
-             {/* Mobile View for the rest: Single Column */}
+             {/* Mobile View */}
              <div className="md:hidden space-y-8">
-                {EXPERIENCES.slice(1).map((exp, index) => (
-                  <ExperienceCard key={index} data={exp} side="left" />
+                {EXPERIENCES.map((exp, index) => (
+                  <ExperienceCard 
+                    key={index} 
+                    data={exp} 
+                    side="left" 
+                    isFullWidth={exp.grid === 'center'} 
+                  />
                 ))}
              </div>
 
-             {/* Desktop View for the rest: Two Columns (Mosaic/Staggered) */}
-             {/* Indices 1, 3, 5 go Left. Indices 2, 4, 6 go Right. */}
-             <div className="hidden md:flex gap-10">
-                {/* Left Column (Infotree, e-Procurement, Percept) */}
-                <div className="w-1/2 flex flex-col gap-12">
-                   <ExperienceCard data={EXPERIENCES[1]} side="left" />
-                   <ExperienceCard data={EXPERIENCES[3]} side="left" />
-                   <ExperienceCard data={EXPERIENCES[5]} side="left" />
-                </div>
+             {/* Desktop View */}
+             <div className="hidden md:block">
+               {(() => {
+                 const groups = [];
+                 let currentSplitGroup = { left: [], right: [] };
+                 
+                 EXPERIENCES.forEach((exp) => {
+                   if (exp.grid === 'center') {
+                     if (currentSplitGroup.left.length > 0 || currentSplitGroup.right.length > 0) {
+                       groups.push({ type: 'split', ...currentSplitGroup });
+                       currentSplitGroup = { left: [], right: [] };
+                     }
+                     groups.push({ type: 'center', item: exp });
+                   } else {
+                     if (exp.grid === 'left') currentSplitGroup.left.push(exp);
+                     else currentSplitGroup.right.push(exp);
+                   }
+                 });
+                 
+                 if (currentSplitGroup.left.length > 0 || currentSplitGroup.right.length > 0) {
+                   groups.push({ type: 'split', ...currentSplitGroup });
+                 }
 
-                {/* Right Column (Mobiquity, Techreco, Plasma) */}
-                {/* Visual Fix: Mobiquity (2) is chronologically 'before' Infotree (1), 
-                    but in a visual flow, 1 is top-left, 2 is top-right. 
-                    Since 2 is much larger than 1, having them side-by-side works well. 
-                */}
-                <div className="w-1/2 flex flex-col gap-12">
-                   <ExperienceCard data={EXPERIENCES[2]} side="right" />
-                   <ExperienceCard data={EXPERIENCES[4]} side="right" />
-                   <ExperienceCard data={EXPERIENCES[6]} side="right" />
-                </div>
+                 return groups.map((group, gIdx) => {
+                   if (group.type === 'center') {
+                     return (
+                       <div key={gIdx} className="mb-12 relative z-10">
+                         <ExperienceCard data={group.item} isFullWidth={true} />
+                       </div>
+                     );
+                   } else {
+                     return (
+                       <div key={gIdx} className="flex gap-10 mb-12">
+                          <div className="w-1/2 flex flex-col gap-12">
+                             {group.left.map((item, i) => (
+                               <ExperienceCard key={i} data={item} side="left" />
+                             ))}
+                          </div>
+                          <div className="w-1/2 flex flex-col gap-12">
+                             {group.right.map((item, i) => (
+                               <ExperienceCard key={i} data={item} side="right" />
+                             ))}
+                          </div>
+                       </div>
+                     );
+                   }
+                 });
+               })()}
              </div>
           </div>
         </div>
@@ -910,7 +1051,7 @@ const Portfolio = () => {
                   <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
                     <h3 className="text-xl font-bold text-white">Diploma</h3>
                     <p className="text-blue-400">Technical Examination Board</p>
-                    <p className="text-slate-400 text-sm mt-1">2008 • Major in Information Technology (1st Rank)</p>
+                    <p className="text-slate-400 text-sm mt-1">2008 • Major in Information Technology</p>
                  </div>
                </div>
              </div>
@@ -949,7 +1090,7 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-white mb-6">Let's Build Something Amazing</h2>
           <div className="flex justify-center gap-8 mb-8">
-            <a href="mailto:lacsureja@gmail.com" className="text-slate-400 hover:text-white transition-colors">
+            <a href="mailto:acsureja@gmail.com" className="text-slate-400 hover:text-white transition-colors">
               <Mail size={24} />
             </a>
             <a href="https://linkedin.com/in/architsureja" className="text-slate-400 hover:text-white transition-colors">
