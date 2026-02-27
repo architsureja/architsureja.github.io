@@ -1,20 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  Download, 
-  Server, 
-  Smartphone, 
-  Shield, 
-  Globe, 
-  Code, 
-  Database, 
-  Terminal, 
-  Cpu, 
-  Award, 
-  BookOpen, 
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import BlogDashboard from './blog/BlogDashboard';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Phone,
+  Download,
+  Server,
+  Smartphone,
+  Shield,
+  Globe,
+  Code,
+  Database,
+  Terminal,
+  Cpu,
+  Award,
+  BookOpen,
   MapPin,
   ExternalLink,
   ChevronDown,
@@ -304,7 +306,7 @@ const GeminiAssistant = ({ onClose }) => {
   // 1. For this online preview, keep it as: const apiKey = ""; 
   // 2. For your LOCAL/GITHUB deployment, uncomment the line below:
   // const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-  const apiKey = ""; 
+  const apiKey = "";
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -321,7 +323,7 @@ const GeminiAssistant = ({ onClose }) => {
       return "Error: API Key is missing. Please check your .env file and App.jsx configuration.";
     } 
     */
-    
+
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -373,7 +375,7 @@ const GeminiAssistant = ({ onClose }) => {
 
   const handleMatchSubmit = async () => {
     if (!jobDescription.trim()) return;
-    
+
     setAnalysis(null);
     const systemPrompt = `
       Act as a technical recruiter. Compare Archit Sureja's profile with the following Job Description.
@@ -400,7 +402,7 @@ const GeminiAssistant = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-slate-900 border border-slate-700 w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
-        
+
         {/* Header */}
         <div className="p-4 border-b border-slate-800 bg-slate-900 flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -414,19 +416,17 @@ const GeminiAssistant = ({ onClose }) => {
 
         {/* Tabs */}
         <div className="flex border-b border-slate-800">
-          <button 
+          <button
             onClick={() => setActiveTab('chat')}
-            className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-              activeTab === 'chat' ? 'bg-slate-800 text-blue-400 border-b-2 border-blue-400' : 'text-slate-400 hover:text-white hover:bg-slate-800'
-            }`}
+            className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${activeTab === 'chat' ? 'bg-slate-800 text-blue-400 border-b-2 border-blue-400' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
           >
             <MessageSquare size={16} /> Chat with Archit AI
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('match')}
-            className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-              activeTab === 'match' ? 'bg-slate-800 text-purple-400 border-b-2 border-purple-400' : 'text-slate-400 hover:text-white hover:bg-slate-800'
-            }`}
+            className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${activeTab === 'match' ? 'bg-slate-800 text-purple-400 border-b-2 border-purple-400' : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
           >
             <Briefcase size={16} /> Job Fit Analyzer
           </button>
@@ -434,18 +434,17 @@ const GeminiAssistant = ({ onClose }) => {
 
         {/* Content Area */}
         <div className="flex-1 overflow-hidden flex flex-col bg-slate-900/50">
-          
+
           {/* CHAT TAB */}
           {activeTab === 'chat' && (
             <>
               <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-slate-700">
                 {messages.map((msg, idx) => (
                   <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                      msg.role === 'user' 
-                        ? 'bg-blue-600 text-white rounded-br-none' 
-                        : 'bg-slate-800 border border-slate-700 text-slate-200 rounded-bl-none'
-                    }`}>
+                    <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${msg.role === 'user'
+                      ? 'bg-blue-600 text-white rounded-br-none'
+                      : 'bg-slate-800 border border-slate-700 text-slate-200 rounded-bl-none'
+                      }`}>
                       {msg.role === 'assistant' && (
                         <div className="flex items-center gap-2 mb-1 text-xs text-blue-400 font-bold uppercase tracking-wider">
                           <Bot size={12} /> Archit AI
@@ -474,8 +473,8 @@ const GeminiAssistant = ({ onClose }) => {
                     placeholder="Ask about AWS experience, skills, or relocation..."
                     className="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
                   />
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     disabled={isLoading || !query.trim()}
                     className="bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -501,7 +500,7 @@ const GeminiAssistant = ({ onClose }) => {
                     className="w-full h-40 bg-slate-950 border border-slate-700 rounded-xl p-4 text-sm text-slate-300 focus:outline-none focus:border-purple-500 transition-colors resize-none"
                   />
                 </div>
-                
+
                 <button
                   onClick={handleMatchSubmit}
                   disabled={isLoading || !jobDescription.trim()}
@@ -532,7 +531,7 @@ const GeminiAssistant = ({ onClose }) => {
   );
 };
 
-const Portfolio = () => {
+const PortfolioContent = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -542,7 +541,7 @@ const Portfolio = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Update active section based on scroll position
       const sections = ['home', 'about', 'skills', 'experience', 'education'];
       const current = sections.find(section => {
@@ -572,9 +571,8 @@ const Portfolio = () => {
   const NavLink = ({ id, label }) => (
     <button
       onClick={() => scrollToSection(id)}
-      className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-        activeSection === id ? 'text-blue-400' : 'text-slate-300'
-      }`}
+      className={`text-sm font-medium transition-colors hover:text-blue-400 ${activeSection === id ? 'text-blue-400' : 'text-slate-300'
+        }`}
     >
       {label}
     </button>
@@ -583,11 +581,10 @@ const Portfolio = () => {
   const MobileNavLink = ({ id, label }) => (
     <button
       onClick={() => scrollToSection(id)}
-      className={`block w-full text-left py-3 px-4 text-base font-medium border-l-4 transition-colors ${
-        activeSection === id 
-          ? 'border-blue-500 bg-slate-800 text-blue-400' 
-          : 'border-transparent text-slate-300 hover:bg-slate-800 hover:text-white'
-      }`}
+      className={`block w-full text-left py-3 px-4 text-base font-medium border-l-4 transition-colors ${activeSection === id
+        ? 'border-blue-500 bg-slate-800 text-blue-400'
+        : 'border-transparent text-slate-300 hover:bg-slate-800 hover:text-white'
+        }`}
     >
       {label}
     </button>
@@ -603,10 +600,10 @@ const Portfolio = () => {
   // Component for Experience Card
   const ExperienceCard = ({ data, side, isFullWidth = false }) => {
     const isLeft = side === 'left';
-    
+
     return (
       <div className={`relative group w-full ${isFullWidth ? 'mb-8' : ''}`}>
-        
+
         {/* Only show central dots for the split columns, not the full width header */}
         {!isFullWidth && (
           <div className={`md:block absolute top-8 w-3 h-3 rounded-full border-2 border-slate-900 bg-blue-500 z-10 
@@ -625,61 +622,61 @@ const Portfolio = () => {
         <div className={`relative bg-slate-800 border border-slate-700 p-5 rounded-xl hover:border-slate-600 transition-all h-full 
           ${isFullWidth ? '' : 'pl-8 md:pl-5'} 
         `}>
-            {/* If Full Width (Amazon), add a special badge */}
-            {isFullWidth && (
-              <div className="absolute top-0 right-0 p-4">
-                <span className="px-2 py-1 text-xs font-bold text-blue-900 bg-blue-400 rounded">LATEST</span>
-              </div>
-            )}
+          {/* If Full Width (Amazon), add a special badge */}
+          {isFullWidth && (
+            <div className="absolute top-0 right-0 p-4">
+              <span className="px-2 py-1 text-xs font-bold text-blue-900 bg-blue-400 rounded">LATEST</span>
+            </div>
+          )}
 
-            <div className="flex flex-wrap justify-between items-start mb-2 gap-2">
-              <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{data.role}</h3>
-                <div className="flex items-center gap-2 text-blue-400 font-medium">
-                  {data.company}
-                </div>
-              </div>
-              <div className="text-right">
-                  <div className="text-sm text-slate-400 font-mono">{data.period}</div>
-                  <div className="flex items-center gap-1 text-xs text-slate-500 justify-end mt-1">
-                    <MapPin size={12} /> {data.location}
-                  </div>
+          <div className="flex flex-wrap justify-between items-start mb-2 gap-2">
+            <div>
+              <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{data.role}</h3>
+              <div className="flex items-center gap-2 text-blue-400 font-medium">
+                {data.company}
               </div>
             </div>
-
-            <p className="text-slate-300 text-sm mb-3 leading-relaxed">
-              {data.description}
-            </p>
-
-            {data.highlights && (
-              <div className="space-y-4 mb-3">
-                {data.highlights.map((section, sIdx) => (
-                  <div key={sIdx}>
-                    {section.title && (
-                      <h4 className="text-sm font-bold text-blue-400 mb-2 uppercase tracking-wider">
-                        {section.title}
-                      </h4>
-                    )}
-                    <ul className="space-y-1">
-                      {section.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-slate-400">
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+            <div className="text-right">
+              <div className="text-sm text-slate-400 font-mono">{data.period}</div>
+              <div className="flex items-center gap-1 text-xs text-slate-500 justify-end mt-1">
+                <MapPin size={12} /> {data.location}
               </div>
-            )}
+            </div>
+          </div>
 
-            <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-slate-700/50">
-              {data.tech.map((t, i) => (
-                <span key={i} className="text-xs px-2 py-1 rounded bg-slate-900 text-slate-400 font-mono border border-slate-800">
-                  {t}
-                </span>
+          <p className="text-slate-300 text-sm mb-3 leading-relaxed">
+            {data.description}
+          </p>
+
+          {data.highlights && (
+            <div className="space-y-4 mb-3">
+              {data.highlights.map((section, sIdx) => (
+                <div key={sIdx}>
+                  {section.title && (
+                    <h4 className="text-sm font-bold text-blue-400 mb-2 uppercase tracking-wider">
+                      {section.title}
+                    </h4>
+                  )}
+                  <ul className="space-y-1">
+                    {section.items.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-slate-400">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
+          )}
+
+          <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-slate-700/50">
+            {data.tech.map((t, i) => (
+              <span key={i} className="text-xs px-2 py-1 rounded bg-slate-900 text-slate-400 font-mono border border-slate-800">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -687,7 +684,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-blue-500/30 selection:text-blue-200">
-      
+
       {/* Floating Action Button for Gemini AI */}
       <button
         onClick={() => setShowGemini(true)}
@@ -703,9 +700,8 @@ const Portfolio = () => {
       {showGemini && <GeminiAssistant onClose={() => setShowGemini(false)} />}
 
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${
-        isScrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-lg py-3' : 'bg-transparent py-4'
-      }`}>
+      <nav className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-lg py-3' : 'bg-transparent py-4'
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -722,8 +718,11 @@ const Portfolio = () => {
               <NavLink id="skills" label="Skills" />
               <NavLink id="experience" label="Experience" />
               <NavLink id="education" label="Education" />
-              <a 
-                href="mailto:acsureja@gmail.com" 
+              <Link to="/blog" className="text-sm font-medium transition-colors hover:text-blue-400 text-slate-300">
+                Blog
+              </Link>
+              <a
+                href="mailto:acsureja@gmail.com"
                 className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors shadow-lg shadow-blue-600/20"
               >
                 Hire Me
@@ -731,7 +730,7 @@ const Portfolio = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="md:hidden p-2 text-slate-300 hover:text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -749,8 +748,14 @@ const Portfolio = () => {
               <MobileNavLink id="skills" label="Skills" />
               <MobileNavLink id="experience" label="Experience" />
               <MobileNavLink id="education" label="Education" />
+              <Link
+                to="/blog"
+                className="block w-full text-left py-3 px-4 text-base font-medium border-l-4 border-transparent text-slate-300 hover:bg-slate-800 hover:text-white"
+              >
+                Blog
+              </Link>
               <div className="p-4">
-                <a 
+                <a
                   href="mailto:acsureja@gmail.com"
                   className="block w-full text-center py-3 text-sm font-bold text-white bg-blue-600 rounded-lg"
                 >
@@ -767,36 +772,36 @@ const Portfolio = () => {
         {/* Background Elements */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-blue-400 text-sm font-medium mb-6 animate-fade-in-up">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
               Available for new opportunities
             </div>
-            
+
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
               Engineering the Future of <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                 Cloud Infrastructure
               </span>
             </h1>
-            
+
             <p className="text-lg md:text-xl text-slate-400 mb-8 leading-relaxed max-w-2xl">
-              Software Engineer with 10+ years of experience specializing in Backend, Mobile, and Cloud Security. 
+              Software Engineer with 10+ years of experience specializing in Backend, Mobile, and Cloud Security.
               Currently modernizing critical authentication frameworks at <span className="text-white font-medium">Amazon (AWS)</span>.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <a 
+              <a
                 href="mailto:acsureja@gmail.com"
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-all shadow-lg shadow-blue-600/25 flex items-center gap-2"
               >
                 <Mail size={18} />
                 Get in Touch
               </a>
-              <a 
-                href = "/ArchitSureja.pdf"
+              <a
+                href="/ArchitSureja.pdf"
                 className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg border border-slate-700 transition-all flex items-center gap-2"
               >
                 <Download size={18} />
@@ -937,8 +942,8 @@ const Portfolio = () => {
                 <SkillBadge name="HTML5/CSS3" icon={Code} />
               </div>
             </div>
-            
-             <div className="space-y-4">
+
+            <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                 <Award size={20} className="text-blue-400" /> Testing & Quality
               </h3>
@@ -958,72 +963,72 @@ const Portfolio = () => {
       <section id="experience" className="py-12 bg-slate-900/50 border-t border-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white mb-16 text-center">Professional Journey</h2>
-          
+
           <div className="relative py-8">
-             {/* Central Line for Desktop Grid */}
-             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-800 -translate-x-1/2"></div>
-             
-             {/* Mobile View */}
-             <div className="md:hidden space-y-8">
-                {EXPERIENCES.map((exp, index) => (
-                  <ExperienceCard 
-                    key={index} 
-                    data={exp} 
-                    side="left" 
-                    isFullWidth={exp.grid === 'center'} 
-                  />
-                ))}
-             </div>
+            {/* Central Line for Desktop Grid */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-800 -translate-x-1/2"></div>
 
-             {/* Desktop View */}
-             <div className="hidden md:block">
-               {(() => {
-                 const groups = [];
-                 let currentSplitGroup = { left: [], right: [] };
-                 
-                 EXPERIENCES.forEach((exp) => {
-                   if (exp.grid === 'center') {
-                     if (currentSplitGroup.left.length > 0 || currentSplitGroup.right.length > 0) {
-                       groups.push({ type: 'split', ...currentSplitGroup });
-                       currentSplitGroup = { left: [], right: [] };
-                     }
-                     groups.push({ type: 'center', item: exp });
-                   } else {
-                     if (exp.grid === 'left') currentSplitGroup.left.push(exp);
-                     else currentSplitGroup.right.push(exp);
-                   }
-                 });
-                 
-                 if (currentSplitGroup.left.length > 0 || currentSplitGroup.right.length > 0) {
-                   groups.push({ type: 'split', ...currentSplitGroup });
-                 }
+            {/* Mobile View */}
+            <div className="md:hidden space-y-8">
+              {EXPERIENCES.map((exp, index) => (
+                <ExperienceCard
+                  key={index}
+                  data={exp}
+                  side="left"
+                  isFullWidth={exp.grid === 'center'}
+                />
+              ))}
+            </div>
 
-                 return groups.map((group, gIdx) => {
-                   if (group.type === 'center') {
-                     return (
-                       <div key={gIdx} className="mb-12 relative z-10">
-                         <ExperienceCard data={group.item} isFullWidth={true} />
-                       </div>
-                     );
-                   } else {
-                     return (
-                       <div key={gIdx} className="flex gap-10 mb-12">
-                          <div className="w-1/2 flex flex-col gap-12">
-                             {group.left.map((item, i) => (
-                               <ExperienceCard key={i} data={item} side="left" />
-                             ))}
-                          </div>
-                          <div className="w-1/2 flex flex-col gap-12">
-                             {group.right.map((item, i) => (
-                               <ExperienceCard key={i} data={item} side="right" />
-                             ))}
-                          </div>
-                       </div>
-                     );
-                   }
-                 });
-               })()}
-             </div>
+            {/* Desktop View */}
+            <div className="hidden md:block">
+              {(() => {
+                const groups = [];
+                let currentSplitGroup = { left: [], right: [] };
+
+                EXPERIENCES.forEach((exp) => {
+                  if (exp.grid === 'center') {
+                    if (currentSplitGroup.left.length > 0 || currentSplitGroup.right.length > 0) {
+                      groups.push({ type: 'split', ...currentSplitGroup });
+                      currentSplitGroup = { left: [], right: [] };
+                    }
+                    groups.push({ type: 'center', item: exp });
+                  } else {
+                    if (exp.grid === 'left') currentSplitGroup.left.push(exp);
+                    else currentSplitGroup.right.push(exp);
+                  }
+                });
+
+                if (currentSplitGroup.left.length > 0 || currentSplitGroup.right.length > 0) {
+                  groups.push({ type: 'split', ...currentSplitGroup });
+                }
+
+                return groups.map((group, gIdx) => {
+                  if (group.type === 'center') {
+                    return (
+                      <div key={gIdx} className="mb-12 relative z-10">
+                        <ExperienceCard data={group.item} isFullWidth={true} />
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={gIdx} className="flex gap-10 mb-12">
+                        <div className="w-1/2 flex flex-col gap-12">
+                          {group.left.map((item, i) => (
+                            <ExperienceCard key={i} data={item} side="left" />
+                          ))}
+                        </div>
+                        <div className="w-1/2 flex flex-col gap-12">
+                          {group.right.map((item, i) => (
+                            <ExperienceCard key={i} data={item} side="right" />
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+                });
+              })()}
+            </div>
           </div>
         </div>
       </section>
@@ -1031,57 +1036,57 @@ const Portfolio = () => {
       {/* Education & Certs */}
       <section id="education" className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid md:grid-cols-2 gap-12">
-             
-             <div>
-               <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                 <BookOpen className="text-blue-500" /> Education
-               </h2>
-               <div className="space-y-6">
-                 <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
-                    <h3 className="text-xl font-bold text-white">Master of Technology</h3>
-                    <p className="text-blue-400">Nirma University, Ahmedabad</p>
-                    <p className="text-slate-400 text-sm mt-1">2013 • Major in Information & Communication Technology</p>
-                 </div>
-                 <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
-                    <h3 className="text-xl font-bold text-white">Bachelor of Engineering</h3>
-                    <p className="text-blue-400">Gujarat University, Ahmedabad</p>
-                    <p className="text-slate-400 text-sm mt-1">2011 • Major in Information Technology</p>
-                 </div>
-                  <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
-                    <h3 className="text-xl font-bold text-white">Diploma</h3>
-                    <p className="text-blue-400">Technical Examination Board</p>
-                    <p className="text-slate-400 text-sm mt-1">2008 • Major in Information Technology</p>
-                 </div>
-               </div>
-             </div>
+          <div className="grid md:grid-cols-2 gap-12">
 
-             <div>
-               <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                 <Award className="text-yellow-500" /> Certifications
-               </h2>
-               <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-8 rounded-xl relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <Award size={100} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">AWS Certified Developer</h3>
-                  <p className="text-lg text-blue-400 font-medium mb-4">Associate Level</p>
-                  <p className="text-slate-400">
-                    Validated expertise in developing, deploying, and debugging cloud-based applications using AWS.
-                  </p>
-               </div>
-               
-               <div className="mt-8">
-                  <h3 className="text-xl font-bold text-white mb-4">Hobbies</h3>
-                  <div className="flex gap-4">
-                     <span className="px-4 py-2 bg-slate-800 rounded-lg text-slate-300 border border-slate-700 hover:border-blue-500 transition-colors cursor-default">Gaming</span>
-                     <span className="px-4 py-2 bg-slate-800 rounded-lg text-slate-300 border border-slate-700 hover:border-blue-500 transition-colors cursor-default">Cooking</span>
-                     <span className="px-4 py-2 bg-slate-800 rounded-lg text-slate-300 border border-slate-700 hover:border-blue-500 transition-colors cursor-default">Biking</span>
-                  </div>
-               </div>
-             </div>
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                <BookOpen className="text-blue-500" /> Education
+              </h2>
+              <div className="space-y-6">
+                <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
+                  <h3 className="text-xl font-bold text-white">Master of Technology</h3>
+                  <p className="text-blue-400">Nirma University, Ahmedabad</p>
+                  <p className="text-slate-400 text-sm mt-1">2013 • Major in Information & Communication Technology</p>
+                </div>
+                <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
+                  <h3 className="text-xl font-bold text-white">Bachelor of Engineering</h3>
+                  <p className="text-blue-400">Gujarat University, Ahmedabad</p>
+                  <p className="text-slate-400 text-sm mt-1">2011 • Major in Information Technology</p>
+                </div>
+                <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
+                  <h3 className="text-xl font-bold text-white">Diploma</h3>
+                  <p className="text-blue-400">Technical Examination Board</p>
+                  <p className="text-slate-400 text-sm mt-1">2008 • Major in Information Technology</p>
+                </div>
+              </div>
+            </div>
 
-           </div>
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                <Award className="text-yellow-500" /> Certifications
+              </h2>
+              <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 p-8 rounded-xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <Award size={100} />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">AWS Certified Developer</h3>
+                <p className="text-lg text-blue-400 font-medium mb-4">Associate Level</p>
+                <p className="text-slate-400">
+                  Validated expertise in developing, deploying, and debugging cloud-based applications using AWS.
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <h3 className="text-xl font-bold text-white mb-4">Hobbies</h3>
+                <div className="flex gap-4">
+                  <span className="px-4 py-2 bg-slate-800 rounded-lg text-slate-300 border border-slate-700 hover:border-blue-500 transition-colors cursor-default">Gaming</span>
+                  <span className="px-4 py-2 bg-slate-800 rounded-lg text-slate-300 border border-slate-700 hover:border-blue-500 transition-colors cursor-default">Cooking</span>
+                  <span className="px-4 py-2 bg-slate-800 rounded-lg text-slate-300 border border-slate-700 hover:border-blue-500 transition-colors cursor-default">Biking</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -1096,7 +1101,7 @@ const Portfolio = () => {
             <a href="https://linkedin.com/in/architsureja" className="text-slate-400 hover:text-white transition-colors">
               <Linkedin size={24} />
             </a>
-             <a href="https://architsureja.github.io" className="text-slate-400 hover:text-white transition-colors">
+            <a href="https://architsureja.github.io" className="text-slate-400 hover:text-white transition-colors">
               <Github size={24} />
             </a>
           </div>
@@ -1109,4 +1114,16 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PortfolioContent />} />
+        <Route path="/blog" element={<BlogDashboard />} />
+        <Route path="/blog/:slug" element={<BlogDashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;
