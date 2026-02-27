@@ -311,7 +311,7 @@ const GeminiAssistant = ({ onClose }) => {
           <button 
             onClick={() => setActiveTab('chat')}
             className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-              activeTab === 'chat' ? 'bg-slate-800 text-blue-400 border-b-2 border-blue-400' : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+              activeTab === 'chat' ? 'bg-slate-800 text-blue-400 border-b-2 border-blue-400' : 'text-slate-400 hover:text-white hover:bg-slate-800'
             }`}
           >
             <MessageSquare size={16} /> Chat with Archit AI
@@ -319,7 +319,7 @@ const GeminiAssistant = ({ onClose }) => {
           <button 
             onClick={() => setActiveTab('match')}
             className={`flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${
-              activeTab === 'match' ? 'bg-slate-800 text-purple-400 border-b-2 border-purple-400' : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+              activeTab === 'match' ? 'bg-slate-800 text-purple-400 border-b-2 border-purple-400' : 'text-slate-400 hover:text-white hover:bg-slate-800'
             }`}
           >
             <Briefcase size={16} /> Job Fit Analyzer
@@ -488,7 +488,7 @@ const Portfolio = () => {
   );
 
   const SkillBadge = ({ name, icon: Icon }) => (
-    <div className="flex items-center gap-2 bg-slate-800/50 border border-slate-700 px-3 py-2 rounded-lg hover:border-blue-500/50 hover:bg-slate-800 transition-all group">
+    <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-2 rounded-lg hover:border-blue-500/50 hover:bg-slate-800 transition-all group">
       {Icon && <Icon size={16} className="text-blue-400 group-hover:text-blue-300" />}
       <span className="text-slate-200 text-sm font-medium">{name}</span>
     </div>
@@ -503,7 +503,7 @@ const Portfolio = () => {
         
         {/* Only show central dots for the split columns, not the full width header */}
         {!isFullWidth && (
-          <div className={`hidden md:block absolute top-8 w-3 h-3 rounded-full border-2 border-slate-900 bg-blue-500 z-10 
+          <div className={`md:block absolute top-8 w-3 h-3 rounded-full border-2 border-slate-900 bg-blue-500 z-10 
             ${isLeft ? '-right-[1.65rem]' : '-left-[1.65rem]'}
           `}></div>
         )}
@@ -516,7 +516,7 @@ const Portfolio = () => {
           </>
         )}
 
-        <div className={`relative bg-slate-800/50 border border-slate-700 p-5 rounded-xl hover:border-slate-600 transition-all h-full 
+        <div className={`relative bg-slate-800 border border-slate-700 p-5 rounded-xl hover:border-slate-600 transition-all h-full 
           ${isFullWidth ? '' : 'pl-8 md:pl-5'} 
         `}>
             {/* If Full Width (Amazon), add a special badge */}
@@ -526,7 +526,7 @@ const Portfolio = () => {
               </div>
             )}
 
-            <div className="flex flex-wrap justify-between items-start mb-2 gap-2 pr-8">
+            <div className="flex flex-wrap justify-between items-start mb-2 gap-2">
               <div>
                 <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{data.role}</h3>
                 <div className="flex items-center gap-2 text-blue-400 font-medium">
@@ -592,8 +592,8 @@ const Portfolio = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-blue-500/20">
-                AS
+              <div className="w-8 h-8 flex items-center justify-center">
+                <img src="/icon.svg" />
               </div>
               <span className="font-bold text-lg tracking-tight text-white">Archit Sureja</span>
             </div>
@@ -897,17 +897,17 @@ const Portfolio = () => {
                  <BookOpen className="text-blue-500" /> Education
                </h2>
                <div className="space-y-6">
-                 <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
+                 <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
                     <h3 className="text-xl font-bold text-white">Master of Technology</h3>
                     <p className="text-blue-400">Nirma University, Ahmedabad</p>
                     <p className="text-slate-400 text-sm mt-1">2013 • Major in Information & Communication Technology</p>
                  </div>
-                 <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
+                 <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
                     <h3 className="text-xl font-bold text-white">Bachelor of Engineering</h3>
                     <p className="text-blue-400">Gujarat University, Ahmedabad</p>
                     <p className="text-slate-400 text-sm mt-1">2011 • Major in Information Technology</p>
                  </div>
-                  <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
+                  <div className="bg-slate-800 border border-slate-700 p-6 rounded-xl">
                     <h3 className="text-xl font-bold text-white">Diploma</h3>
                     <p className="text-blue-400">Technical Examination Board</p>
                     <p className="text-slate-400 text-sm mt-1">2008 • Major in Information Technology (1st Rank)</p>
