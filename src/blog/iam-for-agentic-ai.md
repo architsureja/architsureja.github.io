@@ -43,30 +43,13 @@ The building blocks of the new AI IAM control plane are already emerging:
 *   **Policy-as-Code (Cedar/OPA):** Using mathematically verifiable policies (like AWS Cedar) to explicitly model an agent’s world. Instead of implicit trust, systems define exactly what an agent can access and under what strict conditions.
 *   **Human-in-the-Loop (HITL) as a Primitive:** For high-risk operations (e.g., dropping a database table, transferring funds), the IAM system must pause the agent's autonomous execution. It triggers an "Out-of-Band" verification (like an Okta push notification) requiring a human to explicitly approve the specific action.
 
-## Solving the Delegation Problem: A Hybrid ZKP Approach
+### The Unsolved Challenges of the Agentic Stack
+While these primitives are the right direction, they are far from perfect. Security engineers attempting to implement them today face severe unsolved problems:
 
-To truly solve the issue of granting an agent authority without risking the exposure of user secrets or granting unbounded access, modern systems must combine **User Authentication** with **Agent Authorization** using mathematical proofs. Here is how a Zero-Knowledge architecture solves this:
-
-### 1. User Authentication via ZKP
-Instead of the user sending a traditional bearer token (like a JWT) to the agent, the user authenticates locally on their device. Using a **Zero-Knowledge Proof (ZKP)** circuit, the user's device generates a cryptographic proof stating: *"I have successfully authenticated, and I am delegating authority for Task X to Agent Y."* The user's underlying secrets (like a biometric seed or password) never leave their secure hardware enclave.
-
-### 2. Issuing the Agent Context Token
-The central IAM control plane verifies the user's ZKP. Upon success, it does *not* give the agent a blanket impersonation token. Instead, it issues a highly scoped, contextually bound **Agent Delegation Token**. 
-
-This token cryptographically binds two distinct elements together:
-*   **The Principal (User):** The human who requested the action (verified via their ZKP).
-*   **The Scope (Policy):** The exact boundaries of the allowed action (e.g., *"Read access to Database A, valid for exactly 10 minutes"*).
-
-Crucially, this token does *not* expose the agent's raw machine identity (like a static SPIFFE ID or API key) to the backend.
-
-### 3. Execution and Continuous Verification via Dual-ZKP
-When the agent attempts to access a backend service, it does not simply present a bearer token. Instead, the agent generates its *own* local Zero-Knowledge Proof. 
-
-This second ZKP mathematically proves two things simultaneously:
-1.  **I am an authorized agent:** (Proving possession of its machine identity secret without transmitting the secret itself).
-2.  **I hold a valid Delegation Token from the User:** (Proving it was authorized to execute this specific task).
-
-The backend verifies this combined proof. If the agent's underlying runtime is compromised and its raw identity secrets are stolen, the attacker still cannot use them. Without the combination of the agent's secret *and* the user's mathematically bound delegation token, the proof generation fails. This creates a true Zero-Trust execution environment where compromises are isolated and useless outside of their strict, cryptographically enforced contexts.
+1.  **SPIFFE/SPIRE Overhead:** SPIFFE was designed for Kubernetes microservices running for days or weeks. AI Agents are often highly ephemeral—spinning up in a serverless function for exactly 5 seconds to answer a single user prompt. Generating, attesting, and rotating X.509 certificates for millions of 5-second agents introduces massive latency and infrastructure overhead.
+2.  **The MCP "Retrieval vs. Reasoning" Gap:** MCP brilliantly solves *Data Retrieval Security* (ensuring the agent can only fetch data the user is authorized for). However, it cannot solve *Execution/Reasoning Security*. Once sensitive data legally flows through the MCP pipe and enters the LLM's Context Window, MCP has zero control over what the LLM decides to do with it. If the agent reads a malicious, Prompt-Injected email fetched via MCP, the non-deterministic LLM could be tricked into exfiltrating that private data to an attacker.
+3.  **The Policy-as-Code Mapping Problem:** Cedar and OPA require strict, deterministic resource mappings (e.g., `Allow Action: 's3:GetObject'`). But Agentic AI is fundamentally non-deterministic. How do you map a fuzzy LLM goal like *"Audit last week's finances"* to a perfectly strict Cedar policy without accidentally over-provisioning access? Writing policy for autonomous actors is an active research problem.
+4.  **HITL & Alert Fatigue:** If we require human approval for every API write-action an agent attempts, we bottleneck the automation we were trying to achieve. Worse, it leads to severe "Alert Fatigue." Humans will eventually just blindly tap "Approve" on Okta popups from their agents without actually auditing the execution trace, entirely defeating the Zero-Trust model.
 
 ## The Future: Identity as the Control Plane
 
@@ -75,5 +58,7 @@ If an agent can reason and call external systems, the primary security question 
 The question becomes: *"Who authorized this specific action, under what scope, and can it be immediately revoked or audited?"*
 
 Identity is moving from a simple login prompt at the edge of the network to the very center of the execution architecture. It is becoming the primary control plane.
+
+To truly solve the issue of granting an agent authority without risking the exposure of user secrets or granting unbounded access, modern systems must combine User Authentication with Agent Authorization using strict mathematical proofs. **For a technical deep-dive into how this is achieved, read my follow-up piece: [Trust by Proof: Solving Agentic Delegation with Dual-ZKPs](/blog/zk-auth-agent-delegation).**
 
 To safely deploy Agentic AI in the enterprise, organizations must abandon static permissions and embrace Just-In-Time (JIT) access, strict machine identity lifecycles, and relentless least-privilege enforcement. The autonomous future cannot be secured with yesterday's passwords.

@@ -3,6 +3,51 @@ import { Calendar, Clock, ChevronLeft, BookOpen, Home } from 'lucide-react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import mermaid from 'mermaid';
+
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'dark',
+  securityLevel: 'loose',
+});
+
+const MermaidRenderer = ({ code }) => {
+  const [svg, setSvg] = useState('');
+  const [error, setError] = useState(false);
+  const idRef = React.useRef(`mermaid-${Math.random().toString(36).substr(2, 9)}`);
+
+  useEffect(() => {
+    mermaid.render(idRef.current, code)
+      .then(result => {
+        setSvg(result.svg);
+        setError(false);
+      })
+      .catch(e => {
+        console.error("Mermaid parsing error:", e);
+        setError(true);
+      });
+  }, [code]);
+
+  if (error) {
+    return (
+      <div className="bg-red-900/20 border border-red-500/50 p-4 rounded-xl my-6">
+        <p className="text-red-400 font-bold mb-2">Mermaid Diagram Error</p>
+        <pre className="text-slate-300 text-sm overflow-auto">{code}</pre>
+      </div>
+    );
+  }
+
+  if (!svg) {
+    return <div className="text-slate-500 text-center my-8 animate-pulse">Rendering diagram...</div>;
+  }
+
+  return (
+    <div
+      className="mermaid-diagram overflow-auto my-8 flex justify-center bg-slate-800/80 p-6 rounded-xl border border-slate-700 w-full"
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  );
+};
 
 // Helper to parse frontmatter and content from markdown string
 const parseMarkdown = (filename, content) => {
@@ -94,7 +139,25 @@ const BlogDashboard = () => {
 
             {/* Markdown Rendering */}
             <div className="prose prose-invert prose-lg max-w-none text-slate-300 leading-relaxed">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  code(props) {
+                    const { children, className, node, ...rest } = props;
+                    const match = /language-(\w+)/.exec(className || '');
+
+                    if (match && match[1] === 'mermaid') {
+                      return <MermaidRenderer code={String(children).replace(/\n$/, '')} />;
+                    }
+
+                    return (
+                      <code className={className} {...rest}>
+                        {children}
+                      </code>
+                    );
+                  }
+                }}
+              >
                 {activePost.body}
               </ReactMarkdown>
             </div>
