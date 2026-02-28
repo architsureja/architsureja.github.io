@@ -1,6 +1,6 @@
 ---
 title: "Trust by Proof: Solving Agentic Delegation with Dual-ZKPs"
-date: "Feb 28, 2026"
+date: "Feb 27, 2026"
 readTime: "8 min read"
 excerpt: "Traditional IAM frameworks fail when granting authority to non-deterministic AI agents. Learn how a Dual-ZKP architecture uses cryptographic 'Proof of Action' to eliminate JWT Token theft, SPIFFE latency, and HITL alert fatigue."
 tags: "Cryptography, Zero-Knowledge Proofs, ZKP, Agentic AI, IAM, Security Architecture"

@@ -1,6 +1,6 @@
 ---
 title: "The Next Security Frontier: Identity & Access Management in the Era of Agentic AI"
-date: "Feb 27, 2026"
+date: "Feb 15, 2026"
 readTime: "9 min read"
 excerpt: "As autonomous AI agents move from chatbots to action-takers, traditional IAM is breaking down. Explore why we are shifting from granting access to granting authority, and how protocols like MCP and SPIFFE are building the new control plane."
 tags: "Cybersecurity, IAM, Artificial Intelligence, Agentic AI, Architecture"

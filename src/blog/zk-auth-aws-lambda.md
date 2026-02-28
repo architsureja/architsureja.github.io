@@ -1,6 +1,6 @@
 ---
 title: "Trustless Authentication: Building ZK-Auth for AWS Lambda"
-date: "Feb 27, 2026"
+date: "Jan 10, 2026"
 readTime: "12 min read"
 excerpt: "A deep-dive technical guide on replacing traditional bearer tokens with ZK-SNARKs. Learn the technical stack (Noir, WASM, AWS Lambda) and the end-to-end flow from circuit definition to executing mathematical proofs."
 tags: "AWS Lambda, ZKP, Authentication, Security, Noir"

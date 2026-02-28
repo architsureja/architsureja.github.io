@@ -1,6 +1,6 @@
 ---
 title: "ZK-Auth vs. JWT: Why Traditional Authentication Is Failing Your Privacy"
-date: "Feb 27, 2026"
+date: "Jan 03, 2026"
 readTime: "10 min read"
 excerpt: "A comparative analysis pitting 'Trust by Proof' (ZK-Auth) against 'Trust by Delegation' (JWT/OIDC) and how ZKPs eliminate classic vulnerabilities like bearer-token theft."
 tags: "Privacy, JWT, Authentication, Cybersecurity, ZK-Auth"

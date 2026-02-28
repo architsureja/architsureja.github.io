@@ -1,6 +1,6 @@
 ---
 title: "Zero-Knowledge Proofs (ZKP) for Beginners: The 'Where's Waldo' Guide"
-date: "Feb 27, 2026"
+date: "Jan 01, 2026"
 readTime: "8 min read"
 excerpt: "An intuitive introduction to Zero-Knowledge Proofs (ZKPs) using the 'Where's Waldo' analogy to explain how one can prove knowledge of a secret without revealing the secret itself."
 tags: "ZKP, Security, Cryptography, Privacy, Tech Guide"
