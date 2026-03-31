@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import BlogDashboard from './blog/BlogDashboard';
 import {
   Github,
@@ -1116,13 +1116,13 @@ const PortfolioContent = () => {
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<PortfolioContent />} />
         <Route path="/blog" element={<BlogDashboard />} />
         <Route path="/blog/:slug" element={<BlogDashboard />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
